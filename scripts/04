@@ -1,0 +1,16 @@
+#echo "0 0 * * * $(pwd)/04.sh" >> /etc/crontab 
+changef="/etc/crontab"
+file="/var/log/crontab_change.log"
+cur="$(md5sum $changef)"
+sum="Null"
+if [ -f "$file" ]
+	then sum="$(cat $file)"
+fi
+if [ "$cur" = "sum" ]
+then 
+	echo "Crontab wasn't changed"
+else
+	mail -s "Crontab Update" root 
+	echo "Crontab was updated, email sent." 
+	echo "$cur" > "$file"
+fi

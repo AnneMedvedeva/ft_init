@@ -1,0 +1,3 @@
+nslookup "address"
+or
+host "adress"

@@ -1,0 +1,1 @@
+service status | awk 'FNR == 5 {print $3}'
